@@ -1,0 +1,7 @@
+resources:
+  - mariadb-namespace.yaml
+  - mariadb-service.yaml
+  - mariadb-statefulset.yaml
+  - mariadb-configmap.yaml
+  - mariadb-secret.yaml
+

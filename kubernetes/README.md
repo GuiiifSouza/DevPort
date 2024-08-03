@@ -10,6 +10,13 @@ This directory contains the configuration files necessary for deploying and mana
   - `nginx-hpa.yaml`: Configures the Horizontal Pod Autoscaler for Nginx, allowing automatic adjustment of the number of pods based on load.
   - `nginx-namespace.yaml`: Creates the `nginx` namespace dedicated to the Ingress Controller.
   - `nginx-service.yaml`: Defines the Service to expose Nginx externally to the cluster.
+- `mariadb/`: Directory containing the configurations for the MariaDB database.
+  - `mariadb-namespace.yaml`: Creates the `mariadb` namespace dedicated to the MariaDB instance.
+  - `mariadb-statefulset.yaml`: Configures the StatefulSet for MariaDB, ensuring persistence and stable identity for each pod.
+  - `mariadb-service.yaml`: Defines the Service to expose MariaDB within the cluster.
+  - `README.md`: Documentation for setting up and using the MariaDB configuration.
+  - `.gitignore`: Specifies which MariaDB configuration files should be ignored by Git.
+
 - `README.md`: This documentation file, explaining the structure and usage of the configurations in this directory.
 
 ## Getting Started
