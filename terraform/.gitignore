@@ -5,6 +5,7 @@ terraform.tfstate.*
 # Ignore Terraform configuration directory
 .terraform/
 .terraform.lock.hcl
+.terraform.tfstate.lock.info
 
 # Ignore sensitive variable files
 terraform.tfvars
