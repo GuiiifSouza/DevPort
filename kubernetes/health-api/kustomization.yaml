@@ -1,0 +1,6 @@
+resources:
+  - health-api-namespace.yaml
+  - health-api-secret.yaml
+  - health-api-deployment.yaml
+  - health-api-service.yaml
+  - health-api-hpa.yaml

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: nginx
+data:
+  nginx.conf: |
+    events { }
+
+    http {
+        upstream health-api {
+            server health-api-service.health-api.svc.cluster.local:80;
+        }
+
+        server {
+            listen 80;
+
+            location /health-api/ {
+              proxy_pass http://health-api/;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            }
+
+            location / {
+                return 404;
+            }
+        }
+    }
+

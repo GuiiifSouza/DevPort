@@ -1,6 +1,7 @@
 resources:
   - nginx-namespace.yaml
+  - nginx-configmap.yaml
   - nginx-deployment.yaml
-  - nginx-hpa.yaml
   - nginx-service.yaml
+  - nginx-hpa.yaml
 
