@@ -21,11 +21,14 @@ resource "google_container_cluster" "primary" {
   name               = var.cluster_name
   location           = var.zone
   initial_node_count = var.initial_node_count
+  monitoring_service = "monitoring.googleapis.com/kubernetes"
+  logging_service    = "logging.googleapis.com/kubernetes"
   node_config {
     machine_type = var.machine_type
     disk_size_gb = var.disk_size_gb
+    disk_type    = var.disk_type
   }
-  deletion_protection = true
+  deletion_protection = false
   network    = google_compute_network.vpc_network.name
   subnetwork = google_compute_subnetwork.subnetwork.name
 }

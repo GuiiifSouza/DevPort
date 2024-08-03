@@ -43,6 +43,11 @@ variable "disk_size_gb" {
   type        = number
 }
 
+variable "disk_type" {
+  description = "The disk type for the Kubernetes nodes (e.g., pd-ssd, pd-standard)"
+  type        = string
+}
+
 variable "service_account_key" {
   description = "The path to the service account key JSON file"
   type        = string
