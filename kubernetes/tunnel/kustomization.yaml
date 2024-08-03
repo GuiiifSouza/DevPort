@@ -1,0 +1,3 @@
+resources:
+  - ssh-pod.yaml
+  - socat-pod.yaml

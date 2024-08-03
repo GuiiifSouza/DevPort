@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tunnel-pod
+spec:
+  containers:
+  - name: socat
+    image: alpine/socat
+    command: ['sh', '-c', 'while true; do sleep 30; done;']
+

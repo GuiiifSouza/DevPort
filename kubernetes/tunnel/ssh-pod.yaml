@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ssh-pod
+spec:
+  containers:
+  - name: sshd
+    image: rastasheep/ubuntu-sshd:18.04
+    ports:
+    - containerPort: 22
+

@@ -1,23 +1,23 @@
 import { DataSource } from 'typeorm';
-import { Health } from './health/health.entity';
+import { ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
-export const AppDataSource = new DataSource({
-  type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'dev_port',
-  password: 'pIrnuq-4rezmo-rusxuv',
-  database: 'dev_port_database',
-  entities: [Health],
-  synchronize: false,
-  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+ConfigModule.forRoot({
+  isGlobal: true,
 });
 
-AppDataSource.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization', err);
-  });
+const configService = new ConfigService();
+
+export const AppDataSource = new DataSource({
+    type: 'mysql',
+    host: configService.get<string>('DATABASE_HOST'),
+    port: configService.get<number>('DATABASE_PORT'),
+    username: configService.get<string>('DATABASE_USER'),
+    password: configService.get<string>('DATABASE_PASSWORD'),
+    database: configService.get<string>('DATABASE_NAME'),
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    migrations: [__dirname + '/migrations/*{.ts,.js}'],
+    synchronize: false,
+    logging: true,
+});
 
