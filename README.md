@@ -62,7 +62,7 @@ This repository is organized into several key directories, each representing dif
 1. Clone the repository and navigate to the main directory.
 
    ```bash
-     git clone https://github.com/seunomeusuario/DevPort.git
+     git clone https://github.com/GuiiifSouza/DevPort.git
      cd DevPort
    ```
 
