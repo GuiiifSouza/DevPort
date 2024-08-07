@@ -16,6 +16,14 @@ This directory contains the configuration files necessary for deploying and mana
   - `mariadb-service.yaml`: Defines the Service to expose MariaDB within the cluster.
   - `README.md`: Documentation for setting up and using the MariaDB configuration.
   - `.gitignore`: Specifies which MariaDB configuration files should be ignored by Git.
+- `health-api/`: Directory containing the configurations for deploying the Health API.
+  - `health-api-deployment.yaml`: Deployment definition for the Health API.
+  - `health-api-hpa.yaml`: Horizontal Pod Autoscaler configuration for automatic scaling based on resource usage.
+  - `health-api-namespace.yaml`: Namespace configuration for logically separating Health API resources.
+  - `health-api-service.yaml`: Service definition to expose the Health API within the cluster.
+  - `kustomization.yaml`: Kustomize configuration for managing the Health API Kubernetes resources.
+  - `README.md`: Documentation on setting up and configuring the Health API within the Kubernetes cluster.
+  - `.gitignore`: Ensures sensitive data is not committed to the repository.
 
 - `README.md`: This documentation file, explaining the structure and usage of the configurations in this directory.
 
