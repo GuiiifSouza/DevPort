@@ -1,61 +1,77 @@
-# Infrastructure as Code (IaC) Project
+# Terraform GCP Kubernetes Cluster
 
-This repository contains Terraform configurations for setting up and managing Google Kubernetes Engine (GKE) clusters on Google Cloud Platform (GCP). The project automates the deployment and management of Kubernetes clusters, including node pools, autoscaling, and the creation of a dedicated Virtual Private Cloud (VPC) network for the cluster.
+This project uses Terraform to provision infrastructure on Google Cloud Platform (GCP), creating a VPC, subnet, and a Kubernetes (GKE) cluster with configured Node Pools.
 
 ## Project Structure
-- main.tf: The primary Terraform configuration file that defines the infrastructure resources.
-- variables.tf: Defines input variables used across the Terraform configuration.
-- terraform.tfvars: Contains the values for the input variables. (Sensitive information should be stored here and not committed to version control).
-- config/: Directory for storing configuration files such as service account keys.
-- terraform.tfstate: Tracks the state of the infrastructure managed by Terraform. (Automatically generated, should not be edited manually).
-- .terraform/: Directory containing Terraform's internal files and cache.
-- README.md: Documentation for the project.
-- .gitignore: Specifies which files and directories should be ignored by Git.
 
-## Getting Started
+- **main.tf**: Main file that references modules for creating the VPC, Kubernetes cluster, and provider configuration.
+- **terraform.tfvars**: File containing user-specific and environment-specific variables.
+- **variables.tf**: Declaration of variables used throughout the project.
+- **modules/**: Directory containing reusable modules:
+  - **provider/**: Configures the Google Cloud provider.
+  - **vpc/**: Configures the VPC and subnet.
+  - **k8s/**: Configures the Kubernetes cluster and Node Pools.
 
-### Prerequisites
-- Terraform installed on your local machine.
-- A Google Cloud Platform project with the necessary APIs enabled.
-- Service account key file with the required permissions to manage GKE resources.
+## Prerequisites
 
-## Usage
+- [Terraform](https://www.terraform.io/downloads.html) installed on your machine.
+- Google Cloud account with permissions to create resources (VPC, Kubernetes, etc.).
+- Google Cloud service account key configured.
 
-### Initialize the Terraform working directory:
+## Setup
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd terraform
+   ```
+
+2. Configure the variables in the `terraform.tfvars` file with appropriate values:
+   ```hcl
+   project_id = "your-project-id"
+   region     = "us-east1"
+   zone       = "us-east1-b"
+   cluster_name = "dev-port"
+   initial_node_count = 1
+   min_node_count = 1
+   max_node_count = 3
+   machine_type = "e2-custom-2-4096"
+   disk_size_gb = 25
+   disk_type = "pd-ssd"
+   network_name = "kubernetes-vpc"
+   subnetwork_name = "kubernetes-subnet"
+   ip_cidr_range = "10.0.0.0/16"
+   node_pool_name = "node-deadpool"
+   ```
+
+3. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+
+4. Plan the infrastructure changes:
+   ```bash
+   terraform plan
+   ```
+
+5. Apply the changes:
+   ```bash
+   terraform apply -auto-approve
+   ```
+
+## Destroying the Infrastructure
+
+To destroy the created resources:
 
 ```bash
-terraform init
+terraform destroy -auto-approve
 ```
 
-### Review the plan:
+## Final Considerations
 
-Before applying changes, review what Terraform plans to do:
+- Ensure that your GCP quotas are sufficient for the requested resources.
+- Check the region and zone configurations to ensure that all resources are provisioned as expected.
 
-```bash
-terraform plan
-```
+## Author
 
-### Apply the configuration:
-
-Apply the changes to create/update the infrastructure:
-
-```bash
-terraform apply
-```
-
-### Destroy the infrastructure:
-
-If you need to delete the resources:
-
-```bash
-terraform destroy
-```
-
-## Important Notes
-- This Terraform configuration creates a dedicated VPC network specifically for the Kubernetes cluster. This isolation ensures that the cluster does not interfere with existing networks or projects in the GCP environment.
-- Ensure that the terraform.tfvars file contains the correct and sensitive information before running any Terraform commands.
-- Do not commit the terraform.tfstate file, terraform.tfvars, or any other sensitive information to version control.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
+This project was created to provision and manage a Kubernetes infrastructure on GCP using Terraform.
