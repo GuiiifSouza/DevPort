@@ -42,12 +42,15 @@ This repository is organized into several key directories, each representing dif
   - **kustomization.yaml:** Kustomize configuration for managing the Health API Kubernetes resources.
 
 ### 3. **terraform/**
-   - **Purpose:** Contains infrastructure as code (IaC) scripts using Terraform to provision cloud resources.
+   - **Purpose:** Contains infrastructure as code (IaC) scripts using Terraform to provision and manage cloud resources.
    - **Contents:**
-     - **`main.tf`:** Main configuration file that defines the infrastructure setup.
-     - **`variables.tf`:** Defines input variables used in the Terraform configuration.
-     - **`terraform.tfstate` and `terraform.tfstate.backup`:** State files that track the resources managed by Terraform.
-     - **`terraform.tfvars`:** Contains the values for the variables defined in `variables.tf`.
+     - **\`main.tf\`:** Main configuration file that defines the infrastructure setup, including VPC, Kubernetes cluster, and provider configurations.
+     - **\`variables.tf\`:** Contains the input variables used throughout the Terraform configuration to ensure consistency and flexibility.
+     - **\`terraform.tfvars\`:** Stores the actual values for the variables defined in \`variables.tf\`, specific to the environment.
+     - **modules/:** Directory containing reusable Terraform modules for different components:
+       - **k8s/:** Manages Kubernetes cluster and node pool resources within GCP.
+       - **provider/:** Configures the GCP provider settings.
+       - **vpc/:** Defines the VPC and subnet resources within the GCP project.
 
 ## Getting Started
 
