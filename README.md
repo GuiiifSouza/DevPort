@@ -8,38 +8,42 @@ Welcome to my DevOps portfolio! This repository is a comprehensive demonstration
 
 This repository is organized into several key directories, each representing different aspects of a DevOps workflow:
 
-### 1. **development/**
+### 1. **ansible/**
+   - **Purpose:** Automates the process of deploying infrastructure and Kubernetes configurations.
+   - **Contents:**
+     - **`inventory.ini`:** Defines the inventory for Ansible, including connection settings and target hosts.
+     - **`playbook.yml`:** Ansible playbook that automates the execution of Terraform and Kubernetes commands.
+
+### 2. **development/**
    - **Purpose:** This directory contains the source code for the APIs and the user interface (UI) of the applications.
    - **Contents:**
      - **`apis/`:** Contains backend services and APIs.
        - **`health-api/`:** Example implementation of an API, which includes configuration files, source code, and other necessary components.
      - **`ui/`:** Stores all front-end resources such as HTML, CSS, images, and shared assets used across different applications.
 
-### 2. kubernetes/
-**Purpose:** Manages Kubernetes configurations for deploying and maintaining applications in a cluster.
+### 3. kubernetes/
+    **Purpose:** Manages Kubernetes configurations for deploying and maintaining applications in a cluster.
+    **Contents:**
+      - **nginx/:** Configuration files for the Nginx Ingress Controller.
+        - **nginx-deployment.yaml:** Deployment configuration for the Nginx Ingress Controller.
+        - **nginx-hpa.yaml:** Configuration for the Horizontal Pod Autoscaler for Nginx.
+        - **nginx-namespace.yaml:** Namespace configuration for Nginx resources.
+        - **nginx-service.yaml:** Service definition to expose Nginx.
+        - **nginx-configmap.yaml:** ConfigMap for managing NGINX configuration dynamically, allowing updates to routing and proxy settings without changing the deployment.
 
-**Contents:**
+      - **mariadb/:** Kubernetes configurations for deploying MariaDB.
+        - **mariadb-namespace.yaml:** Namespace configuration for MariaDB.
+        - **mariadb-statefulset.yaml:** StatefulSet configuration to ensure persistence and stable identity for MariaDB pods.
+        - **mariadb-service.yaml:** Service definition for MariaDB to interact with other components within the cluster.
 
-- **nginx/:** Configuration files for the Nginx Ingress Controller.
-  - **nginx-deployment.yaml:** Deployment configuration for the Nginx Ingress Controller.
-  - **nginx-hpa.yaml:** Configuration for the Horizontal Pod Autoscaler for Nginx.
-  - **nginx-namespace.yaml:** Namespace configuration for Nginx resources.
-  - **nginx-service.yaml:** Service definition to expose Nginx.
-  - **nginx-configmap.yaml:** ConfigMap for managing NGINX configuration dynamically, allowing updates to routing and proxy settings without changing the deployment.
-
-- **mariadb/:** Kubernetes configurations for deploying MariaDB.
-  - **mariadb-namespace.yaml:** Namespace configuration for MariaDB.
-  - **mariadb-statefulset.yaml:** StatefulSet configuration to ensure persistence and stable identity for MariaDB pods.
-  - **mariadb-service.yaml:** Service definition for MariaDB to interact with other components within the cluster.
-
-- **health-api/:** Kubernetes configurations for deploying the Health API.
-  - **.gitignore:** Ensures sensitive data is not committed to the repository.
-  - **README.md:** Documentation on setting up and configuring the Health API within the Kubernetes cluster.
-  - **health-api-deployment.yaml:** Deployment definition for the Health API.
-  - **health-api-hpa.yaml:** Horizontal Pod Autoscaler configuration for automatic scaling based on resource usage.
-  - **health-api-namespace.yaml:** Namespace configuration for logically separating Health API resources.
-  - **health-api-service.yaml:** Service definition to expose the Health API within the cluster.
-  - **kustomization.yaml:** Kustomize configuration for managing the Health API Kubernetes resources.
+      - **health-api/:** Kubernetes configurations for deploying the Health API.
+        - **.gitignore:** Ensures sensitive data is not committed to the repository.
+        - **README.md:** Documentation on setting up and configuring the Health API within the Kubernetes cluster.
+        - **health-api-deployment.yaml:** Deployment definition for the Health API.
+        - **health-api-hpa.yaml:** Horizontal Pod Autoscaler configuration for automatic scaling based on resource usage.
+        - **health-api-namespace.yaml:** Namespace configuration for logically separating Health API resources.
+        - **health-api-service.yaml:** Service definition to expose the Health API within the cluster.
+        - **kustomization.yaml:** Kustomize configuration for managing the Health API Kubernetes resources.
 
 ### 3. **terraform/**
    - **Purpose:** Contains infrastructure as code (IaC) scripts using Terraform to provision and manage cloud resources.
@@ -71,19 +75,13 @@ This repository is organized into several key directories, each representing dif
 
 2. Explore each directory to understand the setup and configuration files. Modify the configurations as needed for your specific environment.
 
-3. Initialize and apply the Terraform configurations to set up the necessary cloud resources.
-
+3. To automate the setup using Ansible:
   ```bash
-    terraform init
-    terraform apply
-  ```
-
-4. Use `kubectl` to apply the Kubernetes resources found in the `kubernetes/` directory.
-
-  ```bash
-    kubectl apply -k ./kubernetes/
+    cd ansible
+    ansible-playbook -i inventory.ini playbook.yml
   ```
 
 ## Conclusion
 
 This portfolio project is an ongoing effort to showcase my capabilities in the DevOps domain. It serves not only as a practical demonstration of my skills but also as a reference for anyone interested in similar DevOps practices. Feel free to explore, provide feedback, or even contribute to the project.
+

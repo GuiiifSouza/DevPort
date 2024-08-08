@@ -1,0 +1,22 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    - name: Run Terraform Init
+      command: terraform init
+      args:
+        chdir: ../terraform/
+
+    - name: Run Terraform Apply
+      command: terraform apply -auto-approve
+      args:
+        chdir: ../terraform/
+
+    - name: Ensure kubectl is installed
+      command: kubectl version --client
+
+    - name: Apply Kubernetes configurations
+      command: kubectl apply -k .
+      args:
+        chdir: ../kubernetes/
+

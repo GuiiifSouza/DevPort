@@ -28,8 +28,8 @@ module "k8s" {
   node_pool_name       = var.node_pool_name
   region               = var.region
   zone                 = var.zone
-  network_name         = var.network_name
-  subnetwork_name      = var.subnetwork_name
+  network_name         = module.vpc.vpc_network_name
+  subnetwork_name      = module.vpc.subnetwork_name
   ip_cidr_range        = var.ip_cidr_range
 }
 

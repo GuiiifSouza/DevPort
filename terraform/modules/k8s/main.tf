@@ -4,6 +4,10 @@ resource "google_container_cluster" "primary" {
   project            = var.project_id
   initial_node_count = var.initial_node_count
 
+  network            = var.network_name
+  subnetwork         = var.subnetwork_name
+
+
   node_config {
     machine_type    = var.machine_type
     disk_size_gb    = var.disk_size_gb
