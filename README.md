@@ -19,7 +19,6 @@ This repository is organized into several key directories, each representing dif
    - **Contents:**
      - **`apis/`:** Contains backend services and APIs.
        - **`health-api/`:** Example implementation of an API, which includes configuration files, source code, and other necessary components.
-     - **`ui/`:** Stores all front-end resources such as HTML, CSS, images, and shared assets used across different applications.
 
 ### 3. **kubernetes/**
    - **Purpose:** Manages Kubernetes configurations for deploying and maintaining applications in a cluster.
