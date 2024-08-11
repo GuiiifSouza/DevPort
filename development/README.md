@@ -6,9 +6,6 @@ This directory contains the configuration files necessary for developing and man
 
 - `apis/`: Directory containing the APIs and backends of the applications.
   - `health-api/`: An example of a subdirectory for a specific API, which can include source code, configuration files, Dockerfiles, etc.
-  
-- `ui/`: Directory designated for the user interface and any visual or static content shared between applications.
-  - Examples: May contain HTML, CSS, images, or other resources used in the application's interfaces.
 
 - `README.md`: This documentation file, explaining the structure and usage of the configurations in this directory.
 
@@ -26,7 +23,6 @@ This directory contains the configuration files necessary for developing and man
 This project is structured to be modular, with different components organized into dedicated subdirectories. This facilitates maintenance, parallel development, and code reuse.
 
 - `apis/`: Contains backend and API code, allowing a clear separation between business logic and the user interface.
-- `ui/`: Centralizes all visual and frontend elements of the applications, promoting efficient organization and easy file location.
 
 ### Customize Configurations
 
